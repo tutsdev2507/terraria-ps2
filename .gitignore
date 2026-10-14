@@ -1,0 +1,18 @@
+# artefatos de build
+*.o
+*.elf
+terraria_web
+pal_test
+light_test
+worldgen_test
+dotnet_rand_test
+texcache_test
+chunk_test
+wgdump
+*.ppm
+*.pgm
+
+# backups / temporarios
+backup_*/
+*.zip
+*.tar.gz

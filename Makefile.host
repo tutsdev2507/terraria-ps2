@@ -1,0 +1,30 @@
+# Build para PC/Termux (Android): make -f Makefile.host   -> ./terraria_web  e  ./pal_test
+CC ?= cc
+CFLAGS ?= -O2 -std=gnu99 -Wall -Wno-unused-result -Wno-misleading-indentation
+CORE = src/game.c src/worldgen.c src/dotnet_rand.c src/light.c src/texcache.c src/sw_gfx.c src/pal.h src/worldgen.h src/dotnet_rand.h src/light.h src/tile.h
+all: terraria_web pal_test
+terraria_web: $(CORE) src/pal_web.c
+	$(CC) $(CFLAGS) src/game.c src/worldgen.c src/dotnet_rand.c src/light.c src/sw_gfx.c src/pal_web.c -o $@ -lm
+pal_test: $(CORE) src/pal_test.c
+	$(CC) $(CFLAGS) src/game.c src/worldgen.c src/dotnet_rand.c src/light.c src/sw_gfx.c src/pal_test.c -o $@ -lm
+clean:
+	rm -f terraria_web pal_test texcache_test chunk_test worldgen_test wgdump light_test dotnet_rand_test
+
+# Dump binario de mundo para inspecao: make -f Makefile.host wgdump
+# Depois: python3 tools/world_ascii.py saida.bin [--cols N --rows N]
+wgdump: src/worldgen.c src/dotnet_rand.c tools/wgdump.c src/worldgen.h src/dotnet_rand.h src/tile.h src/templates.inc
+	$(CC) $(CFLAGS) -Isrc src/worldgen.c src/dotnet_rand.c tools/wgdump.c -o $@ -lm
+
+# Testes unitarios (sem PS2SDK): make -f Makefile.host test
+test: pal_test worldgen_test light_test dotnet_rand_test
+	./dotnet_rand_test
+	./worldgen_test
+	./light_test
+	$(CC) $(CFLAGS) src/texcache.c src/texcache_test.c -o texcache_test && ./texcache_test
+	$(CC) $(CFLAGS) src/chunk_test.c -o chunk_test && ./chunk_test
+dotnet_rand_test: src/dotnet_rand.c src/dotnet_rand_test.c src/dotnet_rand.h
+	$(CC) $(CFLAGS) src/dotnet_rand.c src/dotnet_rand_test.c -o $@
+worldgen_test: src/worldgen.c src/dotnet_rand.c src/worldgen_test.c src/worldgen.h src/dotnet_rand.h src/tile.h src/templates.inc
+	$(CC) $(CFLAGS) src/worldgen.c src/dotnet_rand.c src/worldgen_test.c -o $@ -lm
+light_test: src/light.c src/light.h src/tile.h src/worldgen.c src/dotnet_rand.c src/worldgen.h src/dotnet_rand.h src/templates.inc src/light_test.c
+	$(CC) $(CFLAGS) -Isrc src/light.c src/worldgen.c src/dotnet_rand.c src/light_test.c -o $@ -lm

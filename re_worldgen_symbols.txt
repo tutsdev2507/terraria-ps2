@@ -1,0 +1,496 @@
+# WorldGen symbols de libTerraria.so (Terraria mobile 2016)
+# metodo | vaddr | size
+AddBuriedChest	0x0034c534	5228	WorldGen::AddBuriedChest(int, int, int, bool, int)
+AddHellHouses	0x0036ffd8	4236	WorldGen::AddHellHouses()
+AddJungleShrine	0x0036962c	544	WorldGen::AddJungleShrine(int, int, int, int)
+AddLifeCrystal	0x003438c4	368	WorldGen::AddLifeCrystal(int, int)
+AddPlants	0x0036a438	288	WorldGen::AddPlants()
+AddShadowOrb	0x00343a34	644	WorldGen::AddShadowOrb(int, int)
+AddSmallBones	0x00347624	212	WorldGen::AddSmallBones(int, int)
+AddTrees	0x0036120c	216	WorldGen::AddTrees()
+BeachSize	0x0052ee48	4	WorldGen::BeachSize
+CactusFrame	0x00389ce4	1052	WorldGen::CactusFrame(int, int)
+CanCloseDoor	0x003458bc	88	WorldGen::CanCloseDoor(int, int)
+CanFindCenterTile	0x0034e820	60	WorldGen::CanFindCenterTile(short, short, short, short)
+CanKillTile	0x0034ea08	412	WorldGen::CanKillTile(int, int, bool)
+CanKillWall	0x0034e614	192	WorldGen::CanKillWall(int, int)
+CanOpenDoor	0x003456b0	22	WorldGen::CanOpenDoor(int, int)
+CanPlaceTile	0x0034dcd4	1780	WorldGen::CanPlaceTile(int, int&, int, int)
+CanRemoveBoulder	0x0034e930	216	WorldGen::CanRemoveBoulder(int, int)
+CanStandOnTop	0x0034f674	80	WorldGen::CanStandOnTop(int, int)
+CaveOpenater	0x0035427c	688	WorldGen::CaveOpenater(int, int)
+Caverer	0x0035574c	612	WorldGen::Caverer(int, int)
+Cavinator	0x0035452c	716	WorldGen::Cavinator(int, int, int)
+ChasmRunner	0x00357df0	2252	WorldGen::ChasmRunner(int, int, int, bool)
+ChasmRunnerSideways	0x003559b0	1768	WorldGen::ChasmRunnerSideways(int, int, int, int)
+Check1x1	0x0036530c	80	WorldGen::Check1x1(int, int)
+Check1x2	0x003666a8	444	WorldGen::Check1x2(int, int, int)
+Check1x2Top	0x003661b0	356	WorldGen::Check1x2Top(int, int, int)
+Check1xX	0x00365de0	500	WorldGen::Check1xX(int, int, int)
+Check2x1	0x00389158	740	WorldGen::Check2x1(int, int, int)
+Check2x2	0x00391894	628	WorldGen::Check2x2(int, int, int)
+Check2x2Style	0x003908bc	500	WorldGen::Check2x2Style(int, int, int)
+Check2x3Wall	0x003644c0	20	WorldGen::Check2x3Wall(int, int)
+Check2xX	0x003653f4	792	WorldGen::Check2xX(int, int, int)
+Check3x1	0x00391544	492	WorldGen::Check3x1(int, int, int)
+Check3x2	0x00391178	972	WorldGen::Check3x2(int, int, int)
+Check3x2Wall	0x003644ac	20	WorldGen::Check3x2Wall(int, int)
+Check3x3	0x003901e8	1064	WorldGen::Check3x3(int, int, int)
+Check3x3Wall	0x003644d4	20	WorldGen::Check3x3Wall(int, int)
+Check3x4	0x00390f40	568	WorldGen::Check3x4(int, int, int)
+Check4x2	0x00391b48	616	WorldGen::Check4x2(int, int, int)
+Check4x3Wall	0x00364498	20	WorldGen::Check4x3Wall(int, int)
+Check6x3	0x0038f95c	2188	WorldGen::Check6x3(int, int, int)
+Check6x4Wall	0x00364484	20	WorldGen::Check6x4Wall(int, int)
+CheckAlch	0x003650f8	532	WorldGen::CheckAlch(int, int)
+CheckBanner	0x00365fd4	476	WorldGen::CheckBanner(int, int)
+CheckCactus	0x00363e10	536	WorldGen::CheckCactus(int, int)
+CheckCannon	0x00390ce8	600	WorldGen::CheckCannon(int, int, int)
+CheckChand	0x00390610	684	WorldGen::CheckChand(int, int, int)
+CheckChest	0x003622e8	484	WorldGen::CheckChest(int, int)
+CheckClosedDoor	0x0036570c	476	WorldGen::CheckClosedDoor(int, int)
+CheckConditions	0x0033efb0	388	WorldGen::CheckConditions(int)
+CheckCrystal	0x003618f4	260	WorldGen::CheckCrystal(int, int)
+CheckDye	0x00364028	160	WorldGen::CheckDye(int, int)
+CheckGem	0x00363694	284	WorldGen::CheckGem(int, int)
+CheckHousedNPCs	0x0033f240	156	WorldGen::CheckHousedNPCs()
+CheckJunglePlant	0x00364820	1032	WorldGen::CheckJunglePlant(int, int, int)
+CheckLever	0x00391b08	64	WorldGen::CheckLever(int, int)
+CheckMan	0x00364c28	1232	WorldGen::CheckMan(int, int, Tile::TileType)
+CheckMoss	0x00363530	356	WorldGen::CheckMoss(int, int)
+CheckMusicBox	0x00390ab0	568	WorldGen::CheckMusicBox(int, int, int)
+CheckOnTable1x1	0x0036535c	68	WorldGen::CheckOnTable1x1(int, int)
+CheckOnTableClaypot	0x003653a0	84	WorldGen::CheckOnTableClaypot(int, int)
+CheckOpenDoor	0x0035b67c	716	WorldGen::CheckOpenDoor(int, int)
+CheckOrb	0x003664b4	500	WorldGen::CheckOrb(int, int, int)
+CheckPalmTree	0x0038f804	344	WorldGen::CheckPalmTree(int, int)
+CheckPile	0x0038943c	132	WorldGen::CheckPile(int, int)
+CheckPlatform	0x0034c100	380	WorldGen::CheckPlatform(int, int)
+CheckPot	0x003624d0	4188	WorldGen::CheckPot(int, int)
+CheckPound	0x00353328	108	WorldGen::CheckPound(Tile const&)
+CheckRoom	0x0033fd38	1480	WorldGen::CheckRoom(int, int)
+CheckSign	0x003637b0	1632	WorldGen::CheckSign(int, int, int)
+CheckSpace	0x0034085c	492	WorldGen::CheckSpace(int, int)
+CheckSunflower	0x003640c8	480	WorldGen::CheckSunflower(int, int)
+CheckSwitch	0x003619f8	236	WorldGen::CheckSwitch(int, int)
+CheckTight	0x00366314	416	WorldGen::CheckTight(int, int)
+CheckTorch	0x00361ae4	208	WorldGen::CheckTorch(int, int)
+CheckTree	0x0038f1c8	1596	WorldGen::CheckTree(int, int)
+CheckWall	0x003642a8	476	WorldGen::CheckWall(int, int, int, int, int)
+CheckXmasTree	0x003644e8	824	WorldGen::CheckXmasTree(int, int)
+CheckXmasTreeDrop	0x00347d0c	192	WorldGen::CheckXmasTreeDrop(int, int, int)
+Chlorophyte	0x0034ed80	364	WorldGen::Chlorophyte(int, int)
+CleanupWorld	0x00353d54	368	WorldGen::CleanupWorld()
+ClearCircular	0x003441d4	188	WorldGen::ClearCircular(int, int, int)
+ClearTriangular	0x00344144	144	WorldGen::ClearTriangular(vmml::Vector2<int> const&, vmml::Vector2<int> const&, vmml::Vector2<int> const&)
+CloseDoor	0x00391f5c	696	WorldGen::CloseDoor(int, int, bool)
+CloseDoors	0x00392214	140	WorldGen::CloseDoors()
+CloudIsland	0x00351aa0	3308	WorldGen::CloudIsland(int, int)
+Convert	0x003673e0	2712	WorldGen::Convert(int, int, int, int)
+CorruptionFactorForAchievement	0x0052ee50	4	WorldGen::CorruptionFactorForAchievement
+CountTiles	0x0034fb9c	684	WorldGen::CountTiles(int)
+CreateBeach	0x00353ec4	220	WorldGen::CreateBeach(int, int, int)
+CreateFloatingIslands	0x0036a124	788	WorldGen::CreateFloatingIslands(float)
+CreateNewWorld	0x0038e398	14	WorldGen::CreateNewWorld()
+CreateOcean	0x0035767c	1880	WorldGen::CreateOcean(int)
+CrimEnt	0x00350240	552	WorldGen::CrimEnt(vmml::Vector2<float>, int)
+CrimStart	0x00350890	3236	WorldGen::CrimStart(int, int)
+CrimVein	0x00350468	1064	WorldGen::CrimVein(vmml::Vector2<float>, vmml::Vector2<float>)
+DPlat	0x00620970	1200	WorldGen::DPlat
+DeActive	0x003686f8	88	WorldGen::DeActive(int, int)
+DecryptWorldData	0x00340c58	120	WorldGen::DecryptWorldData(EE::IFile*, int)
+Destroy2x2	0x00391730	356	WorldGen::Destroy2x2(int, int, int, int, int)
+DiamondTileFrame	0x00389c94	80	WorldGen::DiamondTileFrame(int, int)
+DirtyRockRunner	0x00351534	700	WorldGen::DirtyRockRunner(int, int)
+DoesAreaContainSolidTiles	0x00353594	224	WorldGen::DoesAreaContainSolidTiles(int, int, int, int)
+DropXmasTree	0x00347dcc	164	WorldGen::DropXmasTree(int, int, int)
+DungeonEnt	0x0036c490	4092	WorldGen::DungeonEnt(int, int, int, int)
+DungeonHalls	0x00344868	2272	WorldGen::DungeonHalls(int, int, int, int, bool)
+DungeonRoom	0x00345148	1116	WorldGen::DungeonRoom(int, int, int, int)
+DungeonStairs	0x00356098	1380	WorldGen::DungeonStairs(int, int, int, int)
+EmptyTileCheck	0x0034353c	128	WorldGen::EmptyTileCheck(int, int, int, int)
+EmptyTileCheckShroom	0x00343670	140	WorldGen::EmptyTileCheckShroom(int, int, int, int)
+EmptyTileCheckTree	0x003435bc	180	WorldGen::EmptyTileCheckTree(int, int, int, int)
+ExplodeMine	0x0036847c	96	WorldGen::ExplodeMine(int, int)
+FillRoom	0x00354200	60	WorldGen::FillRoom(int, int, int, int, Tile::TileType, int)
+FillSquare	0x0035416c	58	WorldGen::FillSquare(int, int, int, int, Tile::TileType)
+FillStairs	0x003541a8	86	WorldGen::FillStairs(int, int, int, int, Tile::TileType)
+ForceSetTile	0x0035411c	80	WorldGen::ForceSetTile(int, int, Tile::TileType)
+GERunner	0x0038e4b8	1144	WorldGen::GERunner(int, vmml::Vector2<float>, bool, vmml::Vector2<int>&, vmml::Vector2<int>&)
+GenerateCorruptionBiome	0x003586bc	1892	WorldGen::GenerateCorruptionBiome(float, int&)
+GenerateCrimsonBiome	0x00366864	2004	WorldGen::GenerateCrimsonBiome(int, float, int&)
+GetCenterTileOfObjectAtTile	0x0034e860	204	WorldGen::GetCenterTileOfObjectAtTile(short&, short&, short, short)
+GetDirectionForOpeningDoor	0x003455a4	268	WorldGen::GetDirectionForOpeningDoor(short, short, int)
+GetOpenedDoorTopLeft	0x003456c8	204	WorldGen::GetOpenedDoorTopLeft(short, short, short)
+GetPositionInMinerHouse	0x0034fab8	228	WorldGen::GetPositionInMinerHouse(int&, int&, int, int, int, int)
+GrowAlch	0x003894c0	228	WorldGen::GrowAlch(int, int)
+GrowCactus	0x0037ad7c	1676	WorldGen::GrowCactus(int, int)
+GrowEpicTree	0x003612e4	284	WorldGen::GrowEpicTree(int, int)
+GrowJunglePlant	0x003671ec	500	WorldGen::GrowJunglePlant(int, int, int)
+GrowLivingTree	0x00371064	5312	WorldGen::GrowLivingTree(int, int)
+GrowPalmTree	0x003605e8	664	WorldGen::GrowPalmTree(int, int)
+GrowPlanteraBulb	0x00367160	140	WorldGen::GrowPlanteraBulb()
+GrowPumpkin	0x0034984c	520	WorldGen::GrowPumpkin(int, int, int)
+GrowShroom	0x003603b4	564	WorldGen::GrowShroom(int, int)
+GrowThorn	0x00367f64	784	WorldGen::GrowThorn(int, int, int, int)
+GrowTree	0x00361030	476	WorldGen::GrowTree(int, int)
+GrowTreeCommon	0x00360880	1780	WorldGen::GrowTreeCommon(int, int, int)
+GrowUndergroundTree	0x00360f74	188	WorldGen::GrowUndergroundTree(int, int)
+GrowVine	0x00367e78	236	WorldGen::GrowVine(int, int, int, int)
+HallowedFactorForAchievement	0x0052ee4c	4	WorldGen::HallowedFactorForAchievement
+HardModeGeneration	0x0038e930	196	WorldGen::HardModeGeneration()
+HellFort	0x0036f35c	2982	WorldGen::HellFort(int, int, int, int)
+IceHeart	0x0036ef20	1084	WorldGen::IceHeart(int, int)
+InterruptWorldGen	0x00665bdc	1	WorldGen::InterruptWorldGen
+IsDungeonTile	0x0035423c	64	WorldGen::IsDungeonTile(int, int)
+IsTileWithinBounds	0x00358e70	32	WorldGen::IsTileWithinBounds(int, int, int, int)
+IsTileWithinBounds	0x00358e90	18	WorldGen::IsTileWithinBounds(vmml::Vector2<int>, int)
+IsTileWithinXBounds	0x00358e20	40	WorldGen::IsTileWithinXBounds(int, int)
+IsTileWithinYBounds	0x00358e48	40	WorldGen::IsTileWithinYBounds(int, int)
+IsValidJungleShrinePosition	0x00354088	148	WorldGen::IsValidJungleShrinePosition(int, int)
+IsWorldFileCRCValid	0x003412f4	460	WorldGen::IsWorldFileCRCValid(EE::String const&)
+IslandHouse	0x00369a74	1712	WorldGen::IslandHouse(int, int)
+JungleRunner	0x003565fc	1224	WorldGen::JungleRunner(int, int)
+JungleTempleX	0x0061ff84	4	WorldGen::JungleTempleX
+JungleTempleY	0x0061ff80	4	WorldGen::JungleTempleY
+JungleX	0x0061ffa8	4	WorldGen::JungleX
+KillActuator	0x0034d9e0	260	WorldGen::KillActuator(int, int)
+KillMannequin	0x003574bc	244	WorldGen::KillMannequin(int, int)
+KillTile	0x0036159c	856	WorldGen::KillTile(int, int)
+KillTile	0x00368274	520	WorldGen::KillTile(int, int, bool, bool, bool, bool)
+KillTileFast	0x0034eba4	476	WorldGen::KillTileFast(int, int)
+KillWall	0x0038ea00	1992	WorldGen::KillWall(int, int, bool)
+KillWire	0x0034db88	332	WorldGen::KillWire(int, int, int)
+Lakinater	0x00352a64	820	WorldGen::Lakinater(int, int)
+LargeWorld	0x0061ff78	1	WorldGen::LargeWorld
+LaunchFireworkFountain	0x003573b4	264	WorldGen::LaunchFireworkFountain(int, int)
+LaunchRocket	0x0034e6d4	196	WorldGen::LaunchRocket(int, int)
+LaunchRocketSmall	0x0034e798	136	WorldGen::LaunchRocketSmall(int, int)
+MakeDungeon	0x003754c4	16590	WorldGen::MakeDungeon(int, int, int, int)
+MakeHive	0x0034f6c8	1008	WorldGen::MakeHive(vmml::Vector2<float>)
+MakeWateryIceThing	0x0036984c	552	WorldGen::MakeWateryIceThing(int, int)
+MineHouse	0x0036a990	6908	WorldGen::MineHouse(int, int)
+Mountinater	0x0035278c	728	WorldGen::Mountinater(int, int)
+MoveNPC	0x00340590	716	WorldGen::MoveNPC(int, int, int)
+MudWallRunner	0x003517f0	688	WorldGen::MudWallRunner(int, int)
+NextNPC	0x0033f134	208	WorldGen::NextNPC()
+NoWire	0x0034e5e4	48	WorldGen::NoWire(int, int)
+OpenDoor	0x003658e8	920	WorldGen::OpenDoor(short, short, bool, bool, short)
+OpenDoors	0x00365c80	352	WorldGen::OpenDoors(vmml::Vector2<float>, int)
+OreRunner	0x00388ad8	764	WorldGen::OreRunner(int, int, double, int, int)
+PAINT_COLORS	0x0061fed8	112	WorldGen::PAINT_COLORS
+PaintEffect	0x00353394	204	WorldGen::PaintEffect(int, int, int, int)
+PaintTile	0x00353460	84	WorldGen::PaintTile(int, int, int, bool)
+PaintWall	0x003534b4	84	WorldGen::PaintWall(int, int, int, bool)
+Place1x1	0x00346700	152	WorldGen::Place1x1(int, int, int, int)
+Place1x2	0x00347200	536	WorldGen::Place1x2(int, int, int, int)
+Place1x2Top	0x00347418	156	WorldGen::Place1x2Top(int, int, int, int)
+Place1xX	0x00345d70	440	WorldGen::Place1xX(int, int, int, int)
+Place2x1	0x003476f8	344	WorldGen::Place2x1(int, int, int, int)
+Place2x2	0x00349a54	820	WorldGen::Place2x2(int, int, int, int)
+Place2x2Style	0x0034933c	728	WorldGen::Place2x2Style(int, int, int, int)
+Place2x3Wall	0x0034b9ac	36	WorldGen::Place2x3Wall(int, int, int, int)
+Place2xX	0x00345f28	608	WorldGen::Place2xX(int, int, int, int)
+Place3x1	0x0034a148	616	WorldGen::Place3x1(int, int, int, int)
+Place3x2	0x0034a3b0	608	WorldGen::Place3x2(int, int, int, int)
+Place3x2Wall	0x0034b9d0	36	WorldGen::Place3x2Wall(int, int, int, int)
+Place3x3	0x0034a88c	1460	WorldGen::Place3x3(int, int, int, int)
+Place3x3Wall	0x0034b95c	80	WorldGen::Place3x3Wall(int, int, int, int)
+Place3x4	0x00349d88	960	WorldGen::Place3x4(int, int, int, int)
+Place4x2	0x00347ff8	1120	WorldGen::Place4x2(int, int, int, int, int)
+Place4x3Wall	0x0034b9f4	34	WorldGen::Place4x3Wall(int, int, int, int)
+Place6x3	0x0034ae40	2496	WorldGen::Place6x3(int, int, int, int)
+Place6x4Wall	0x0034ba18	36	WorldGen::Place6x4Wall(int, int, int, int)
+PlaceActuator	0x0034d9a0	64	WorldGen::PlaceActuator(int, int)
+PlaceAlch	0x00346888	452	WorldGen::PlaceAlch(int, int, int)
+PlaceBanner	0x00346c2c	444	WorldGen::PlaceBanner(int, int, int)
+PlaceCannon	0x00348788	772	WorldGen::PlaceCannon(int, int, int, int)
+PlaceChand	0x0034a610	636	WorldGen::PlaceChand(int, int, int, int)
+PlaceChest	0x0034c27c	696	WorldGen::PlaceChest(int, int, bool, int)
+PlaceDoor	0x00345794	296	WorldGen::PlaceDoor(int, int, int)
+PlaceDye	0x0034bd94	396	WorldGen::PlaceDye(int, int, int)
+PlaceHangingLantern	0x0036958c	160	WorldGen::PlaceHangingLantern(int, int, int, int)
+PlaceJunglePlant	0x00347850	1212	WorldGen::PlaceJunglePlant(int, int, int, int, int)
+PlaceLever	0x0034b928	52	WorldGen::PlaceLever(int, int)
+PlaceMB	0x00349018	804	WorldGen::PlaceMB(int, int, int, int)
+PlaceMan	0x00346de8	1048	WorldGen::PlaceMan(int, int, int, Tile::TileType)
+PlaceOnTable1x1	0x00346798	240	WorldGen::PlaceOnTable1x1(int, int, int, int)
+PlacePot	0x0034bf20	480	WorldGen::PlacePot(int, int, int)
+PlacePumpkin	0x00349614	568	WorldGen::PlacePumpkin(int, int)
+PlaceSign	0x00346188	1400	WorldGen::PlaceSign(int, int, int, int)
+PlaceSmallPile	0x003474b4	368	WorldGen::PlaceSmallPile(int, int, int, int)
+PlaceSunflower	0x0034ba3c	856	WorldGen::PlaceSunflower(int, int)
+PlaceTight	0x00345a64	780	WorldGen::PlaceTight(int, int, int, bool)
+PlaceTile	0x00368920	3180	WorldGen::PlaceTile(int, int, int, bool, bool, int, int)
+PlaceWall	0x00353238	240	WorldGen::PlaceWall(int, int, int)
+PlaceWall	0x0034b800	296	WorldGen::PlaceWall(int, int, int, int, int, int, int, int, int)
+PlaceWire	0x0034dae4	164	WorldGen::PlaceWire(int, int, int)
+PlaceXmasTree	0x0034ef50	1744	WorldGen::PlaceXmasTree(int, int, unsigned short)
+PlantAlch	0x00346a4c	480	WorldGen::PlantAlch()
+PlantCactus	0x0037b408	96	WorldGen::PlantCactus(int, int)
+PlantCheck	0x00361bb4	416	WorldGen::PlantCheck(int, int)
+PlayerLOS	0x0035ae94	796	WorldGen::PlayerLOS(int, int)
+PoundTile	0x003684dc	224	WorldGen::PoundTile(int, int)
+Pyramid	0x00372524	2952	WorldGen::Pyramid(int, int)
+QuickFindHome	0x003403c8	456	WorldGen::QuickFindHome(int)
+RangeFrame	0x0036033c	120	WorldGen::RangeFrame(int, int, int, int)
+ReActive	0x003686a0	88	WorldGen::ReActive(int, int)
+RemoveLine	0x00343f94	432	WorldGen::RemoveLine(vmml::Vector2<int> const&, vmml::Vector2<int> const&)
+RoomNeeds	0x0033f2dc	380	WorldGen::RoomNeeds()
+ScoreRoom	0x0033f458	2270	WorldGen::ScoreRoom(int)
+SearchForTownNpcHouse	0x00357188	464	WorldGen::SearchForTownNpcHouse(short, short, short, short)
+SectionTileFrame	0x00361400	244	WorldGen::SectionTileFrame(int, int)
+SetBackgroundStyles	0x00353508	140	WorldGen::SetBackgroundStyles()
+SetXmasTree	0x00347e70	392	WorldGen::SetXmasTree(int, int, int, int)
+ShouldRemoveWallForCorruption	0x00357dd4	28	WorldGen::ShouldRemoveWallForCorruption(Tile::WallType)
+ShowHardmodeUpsell	0x003436fc	276	WorldGen::ShowHardmodeUpsell()
+ShroomPatch	0x003552dc	1136	WorldGen::ShroomPatch(int, int)
+SlopeTile	0x003685bc	228	WorldGen::SlopeTile(int, int, int)
+SmashAltar	0x00388dd8	896	WorldGen::SmashAltar(int, int)
+SmoothWorld	0x00373648	3968	WorldGen::SmoothWorld()
+SolidTile	0x0034eeec	84	WorldGen::SolidTile(int, int)
+SolidTile	0x0034ef40	14	WorldGen::SolidTile(vmml::Vector2<int>)
+SolidTileUnsafe	0x0034f620	84	WorldGen::SolidTileUnsafe(int, int)
+SpawnDyePlant	0x0036a558	1080	WorldGen::SpawnDyePlant(int, int)
+SpawnMoneyPants	0x00353b48	2	WorldGen::SpawnMoneyPants()
+SpawnNPC	0x00356da8	990	WorldGen::SpawnNPC(int, int)
+SpawnPuffyClouds	0x00356ac8	732	WorldGen::SpawnPuffyClouds(int, int)
+SpawnTravelNPC	0x0035b398	432	WorldGen::SpawnTravelNPC()
+SpreadGrass	0x00350018	552	WorldGen::SpreadGrass(int, int, int, int, bool, int)
+SquareTileFrame	0x003614f4	168	WorldGen::SquareTileFrame(int, int, int)
+SquareTileFrameNoLiquid	0x0038e43c	122	WorldGen::SquareTileFrameNoLiquid(int, int, int)
+SquareWallFrame	0x003531bc	122	WorldGen::SquareWallFrame(int, int, bool)
+StartHardmode	0x00343810	180	WorldGen::StartHardmode()
+StartRoomCheck	0x00340300	200	WorldGen::StartRoomCheck(int, int)
+StartSpaceCheck	0x00340a48	212	WorldGen::StartSpaceCheck(int, int)
+SwitchCannon	0x00348458	816	WorldGen::SwitchCannon(int, int)
+SwitchFountain	0x00348c94	900	WorldGen::SwitchFountain(int, int)
+SwitchMB	0x00348a8c	520	WorldGen::SwitchMB(int, int)
+SynchronizeWorld	0x003575b0	204	WorldGen::SynchronizeWorld(EE::String const&, EE::MemoryFile*)
+Teleport	0x0034e440	420	WorldGen::Teleport(vmml::Vector2<float> const*)
+TileDestroyed	0x0061ff90	8	WorldGen::TileDestroyed
+TileFrame	0x0035b948	18932	WorldGen::TileFrame(int, int, int)
+TileFrameNoLiquid	0x0038a100	16456	WorldGen::TileFrameNoLiquid(int, int, int)
+TileInfo	0x0033ee6c	324	WorldGen::TileInfo()
+TileRunner	0x00354be0	1786	WorldGen::TileRunner(int, int, int, int, Tile::TileType, bool, vmml::Vector2<float>, bool, bool)
+TileRunnerStep	0x00353fa0	232	WorldGen::TileRunnerStep(vmml::Vector2<float>&, vmml::Vector2<float>&, int, int, int, int, int)
+ToggleLever	0x00395b5c	676	WorldGen::ToggleLever(int, int)
+TripWire	0x0039388c	280	WorldGen::TripWire(int, int)
+TryGrowPlanteraBulb	0x00367038	296	WorldGen::TryGrowPlanteraBulb(int, int, int)
+TryPlacingBanner	0x0036ff04	212	WorldGen::TryPlacingBanner(int, int, int)
+UnlockDoor	0x00345914	336	WorldGen::UnlockDoor(int, int)
+UnspawnTravelNPC	0x00353678	1228	WorldGen::UnspawnTravelNPC()
+UpdateMech	0x003939a4	340	WorldGen::UpdateMech()
+UpdateSand	0x00391db0	428	WorldGen::UpdateSand()
+UpdateWorld	0x00393af8	8292	WorldGen::UpdateWorld()
+WallFrame	0x00352d98	1060	WorldGen::WallFrame(int, int, bool)
+WallSpread	0x0034fe48	464	WorldGen::WallSpread(Tile*, int, int)
+WaterCheck	0x00361d54	572	WorldGen::WaterCheck()
+altarCount	0x00623914	4	WorldGen::altarCount
+base64EncodedFile	0x00665b8c	4	WorldGen::base64EncodedFile
+bestX	0x00621acc	4	WorldGen::bestX
+bestY	0x00621ac8	4	WorldGen::bestY
+canSpawn	0x00621ad8	1	WorldGen::canSpawn
+caveBack	0x00623934	10	WorldGen::caveBack
+checkMech	0x0034e3c8	120	WorldGen::checkMech(int, int, int)
+checkRoomDepth	0x0061ff74	4	WorldGen::checkRoomDepth
+clearWorld	0x00340cd0	1020	WorldGen::clearWorld()
+copper	0x005653f8	4	WorldGen::copper
+corruptBG	0x00665bf8	4	WorldGen::corruptBG
+countDirtTiles	0x0034241c	56	WorldGen::countDirtTiles(int, int)
+countTiles	0x00342210	88	WorldGen::countTiles(int, int, int)
+crimson	0x00621ab0	1	WorldGen::crimson
+crimsonBG	0x00665be8	4	WorldGen::crimsonBG
+currentSandBuffer	0x00623b5c	4	WorldGen::currentSandBuffer
+dDoor	0x00620e24	1800	WorldGen::dDoor
+dEnteranceX	0x0062093c	4	WorldGen::dEnteranceX
+dMaxX	0x00620920	4	WorldGen::dMaxX
+dMaxY	0x00620918	4	WorldGen::dMaxY
+dMinX	0x00620924	4	WorldGen::dMinX
+dMinY	0x0062091c	4	WorldGen::dMinY
+dRoom	0x00621530	1400	WorldGen::dRoom
+dSurface	0x00620938	1	WorldGen::dSurface
+dWallBroke	0x00621ab0	1	WorldGen::dWallBroke
+dWallCount	0x00621aac	4	WorldGen::dWallCount
+dWallOut	0x00344290	268	WorldGen::dWallOut(int, int, int)
+desertBG	0x00665be4	4	WorldGen::desertBG
+destroyObject	0x006238a4	1	WorldGen::destroyObject
+digTunnel	0x003547f8	1000	WorldGen::digTunnel(vmml::Vector2<float>&, float, float, int, int, bool)
+doWire	0x003922a0	4688	WorldGen::doWire(int, int, Tile&)
+doorsCheckedThisFrameTiles	0x00665bc4	12	WorldGen::doorsCheckedThisFrameTiles
+doorsRequestedAsClientTiles	0x00665bb8	12	WorldGen::doorsRequestedAsClientTiles
+doorsToCloseTiles	0x00665bd0	12	WorldGen::doorsToCloseTiles
+dropMeteor	0x00389a7c	536	WorldGen::dropMeteor()
+dungeonX	0x00621ac0	4	WorldGen::dungeonX
+dungeonY	0x00621abc	4	WorldGen::dungeonY
+dxStrength1	0x00620934	4	WorldGen::dxStrength1
+dxStrength2	0x0062092c	4	WorldGen::dxStrength2
+dyStrength1	0x00620930	4	WorldGen::dyStrength1
+dyStrength2	0x00620928	4	WorldGen::dyStrength2
+everyTileFrame	0x0038e148	532	WorldGen::everyTileFrame()
+fih	0x00620460	1200	WorldGen::fih
+gemCave	0x003735bc	140	WorldGen::gemCave(int, int)
+gemOut	0x00373324	664	WorldGen::gemOut(int, int)
+gen	0x0062391e	1	WorldGen::gen
+genRand	0x006238a8	16	WorldGen::genRand
+generateWorld	0x0037b468	54890	WorldGen::generateWorld()
+gold	0x005653ec	4	WorldGen::gold
+grassSpread	0x006238bc	4	WorldGen::grassSpread
+hallowBG	0x00665bec	4	WorldGen::hallowBG
+hardLock	0x00623952	1	WorldGen::hardLock
+hardModeGenThread	0x00665b90	20	WorldGen::hardModeGenThread
+hardUpdateWorld	0x0037a4d4	2216	WorldGen::hardUpdateWorld(int, int)
+hellBackStyle	0x00623928	4	WorldGen::hellBackStyle
+hellChest	0x0061ffa4	4	WorldGen::hellChest
+hiScore	0x00621ac4	4	WorldGen::hiScore
+hitSwitch	0x00395e00	180	WorldGen::hitSwitch(int, int)
+hitWire	0x003934f0	380	WorldGen::hitWire(int, int, int)
+houseCount	0x00620910	4	WorldGen::houseCount
+houseTile	0x00621ad0	8	WorldGen::houseTile
+iceBackStyle	0x00623930	4	WorldGen::iceBackStyle
+inPump	0x00623bf4	80	WorldGen::inPump
+innerCellIndex	0x0061ff88	2	WorldGen::innerCellIndex
+iron	0x005653f4	4	WorldGen::iron
+isWorldLoadable	0x003414c0	172	WorldGen::isWorldLoadable(EE::IFile*)
+jungleBG	0x00665bf4	4	WorldGen::jungleBG
+jungleBackStyle	0x0062392c	4	WorldGen::jungleBackStyle
+kickOut	0x0033f204	60	WorldGen::kickOut(int)
+lastDungeonHall	0x00621ab4	8	WorldGen::lastDungeonHall
+lastMaxTilesX	0x0062390e	2	WorldGen::lastMaxTilesX
+lastMaxTilesY	0x0062390c	2	WorldGen::lastMaxTilesY
+lavaLine	0x00623924	4	WorldGen::lavaLine
+loadWorld	0x00361f90	852	WorldGen::loadWorld(EE::IFile*)
+loadWorldData	0x0034156c	2300	WorldGen::loadWorldData(EE::IFile*, int)
+loadWorldDataOld	0x00342a70	2234	WorldGen::loadWorldDataOld(EE::IFile*, int)
+loadWorldHeader	0x003410cc	552	WorldGen::loadWorldHeader(EE::IFile*)
+loading	0x0062391c	1	WorldGen::loading
+mCave	0x0061ffac	1200	WorldGen::mCave
+makeTemple	0x0036d490	6794	WorldGen::makeTemple(int, int)
+maxAltarsPlaced	0x005653e0	4	WorldGen::maxAltarsPlaced
+mayanTrap	0x00379594	2796	WorldGen::mayanTrap(int, int)
+mech	0x00663c48	8000	WorldGen::mech
+mergeDown	0x0061ff9a	1	WorldGen::mergeDown
+mergeDown2	0x0061fd32	1	WorldGen::mergeDown2
+mergeLeft	0x0061ff98	1	WorldGen::mergeLeft
+mergeLeft2	0x0061fd30	1	WorldGen::mergeLeft2
+mergeRight	0x0061ff98	1	WorldGen::mergeRight
+mergeRight2	0x0061fd30	1	WorldGen::mergeRight2
+mergeUp	0x0061ff9a	1	WorldGen::mergeUp
+mergeUp2	0x0061fd32	1	WorldGen::mergeUp2
+meteor	0x003895a4	1240	WorldGen::meteor(int, int)
+mossOut	0x003426ac	236	WorldGen::mossOut(int, int)
+moveRoom	0x00357358	92	WorldGen::moveRoom(int, int, int)
+mudWall	0x006238c0	1	WorldGen::mudWall
+nearPicture	0x0034439c	128	WorldGen::nearPicture(int, int)
+nearPicture2	0x0034441c	276	WorldGen::nearPicture2(int, int)
+nextCount	0x0034203c	468	WorldGen::nextCount(int, int, int)
+nextDirtCount	0x00342268	436	WorldGen::nextDirtCount(int, int)
+noLiquidCheck	0x006238b8	1	WorldGen::noLiquidCheck
+noWire	0x00623c48	131068	WorldGen::noWire
+numDDoors	0x0062152c	4	WorldGen::numDDoors
+numDPlats	0x00620e20	4	WorldGen::numDPlats
+numDRooms	0x00621aa8	4	WorldGen::numDRooms
+numInPump	0x00623bf0	4	WorldGen::numInPump
+numInnerCellsPerSide	0x005653dc	2	WorldGen::numInnerCellsPerSide
+numIslandHouses	0x00620914	4	WorldGen::numIslandHouses
+numJChests	0x0062096c	4	WorldGen::numJChests
+numMCaves	0x0062045c	4	WorldGen::numMCaves
+numMechs	0x00663c44	4	WorldGen::numMechs
+numNoWire	0x00623c44	4	WorldGen::numNoWire
+numOutPump	0x00623b9c	4	WorldGen::numOutPump
+numRoomTiles	0x0062389c	4	WorldGen::numRoomTiles
+numWire	0x00643c44	4	WorldGen::numWire
+numberPlants	0x00623b84	24	WorldGen::numberPlants
+oceanBG	0x00665be0	4	WorldGen::oceanBG
+oreTier1	0x005653ea	2	WorldGen::oreTier1
+oreTier2	0x005653e8	2	WorldGen::oreTier2
+oreTier3	0x005653e6	2	WorldGen::oreTier3
+outPump	0x00623ba0	80	WorldGen::outPump
+outerTempled	0x00343ec4	208	WorldGen::outerTempled(int, int)
+placeTrap	0x003745c8	3836	WorldGen::placeTrap(int, int, int)
+planteraBulbs	0x00623b64	4	WorldGen::planteraBulbs
+playWorld	0x00340bf8	2	WorldGen::playWorld()
+playWorldCallBack	0x0038e3a8	148	WorldGen::playWorldCallBack(void*)
+randBoneTile	0x00344530	68	WorldGen::randBoneTile()
+randGem	0x00342650	40	WorldGen::randGem()
+randGemTile	0x00342678	52	WorldGen::randGemTile()
+randHellPicture	0x00344574	176	WorldGen::randHellPicture()
+randHousePicture	0x00344624	280	WorldGen::randHousePicture()
+randMoss	0x00342798	164	WorldGen::randMoss()
+randPictureTile	0x0034473c	300	WorldGen::randPictureTile()
+randomBackgrounds	0x0034332c	528	WorldGen::randomBackgrounds()
+resetGen	0x00341f54	232	WorldGen::resetGen()
+room	0x00621aec	7600	WorldGen::room
+roomChair	0x0061ff9e	1	WorldGen::roomChair
+roomDoor	0x0061ffa0	1	WorldGen::roomDoor
+roomEvil	0x0061ff9c	1	WorldGen::roomEvil
+roomOccupied	0x0061ff9c	1	WorldGen::roomOccupied
+roomTable	0x0061ff9e	1	WorldGen::roomTable
+roomTorch	0x0061ffa0	1	WorldGen::roomTorch
+roomX1	0x00621ae8	4	WorldGen::roomX1
+roomX2	0x00621ae4	4	WorldGen::roomX2
+roomY1	0x00621ae0	4	WorldGen::roomY1
+roomY2	0x00621adc	4	WorldGen::roomY2
+sandBuffer	0x00623954	520	WorldGen::sandBuffer
+saveAllWhilePlaying	0x0035ad0c	380	WorldGen::saveAllWhilePlaying(WorldGen::SaveMode::Enum)
+saveAllWhilePlayingCallBack	0x0035a718	1512	WorldGen::saveAllWhilePlayingCallBack(void*)
+saveLock	0x00623950	1	WorldGen::saveLock
+savePlayerWhilePlaying	0x0035ae88	10	WorldGen::savePlayerWhilePlaying()
+savePlayerWhilePlayingCallBack	0x00340bfc	92	WorldGen::savePlayerWhilePlayingCallBack(void*)
+saveThread	0x00665ba4	20	WorldGen::saveThread
+saveWorldData	0x00358ea4	5852	WorldGen::saveWorldData(EE::IFile*)
+saveWorldHeader	0x00341e68	236	WorldGen::saveWorldHeader(EE::IFile*)
+saveWorldWhilePlaying	0x0035a6f8	32	WorldGen::saveWorldWhilePlaying()
+saveWorldWhilePlayingCallBack	0x0035a580	376	WorldGen::saveWorldWhilePlayingCallBack(void*)
+setCaveBacks	0x003428b8	436	WorldGen::setCaveBacks()
+setMoss	0x0034283c	124	WorldGen::setMoss(int, int)
+setWorldSize	0x00340b1c	220	WorldGen::setWorldSize()
+shadowOrbCount	0x00623918	4	WorldGen::shadowOrbCount
+shadowOrbSmashed	0x0062391c	1	WorldGen::shadowOrbSmashed
+shouldSync	0x00623950	1	WorldGen::shouldSync
+silver	0x005653f0	4	WorldGen::silver
+snowBG	0x00665bf0	4	WorldGen::snowBG
+spawnDelay	0x006238a0	4	WorldGen::spawnDelay
+spawnMeteor	0x00623910	1	WorldGen::spawnMeteor
+spiderOut	0x003730ac	632	WorldGen::spiderOut(int, int)
+stopDrops	0x006238c0	1	WorldGen::stopDrops
+tEvil	0x00623b6a	2	WorldGen::tEvil
+tGood	0x00623b68	2	WorldGen::tGood
+tempTime	0x006238c4	72	WorldGen::tempTime
+templeBottom	0x0062095c	4	WorldGen::templeBottom
+templeCleaner	0x00343cb8	256	WorldGen::templeCleaner(int, int)
+templeLeft	0x00620968	4	WorldGen::templeLeft
+templePart2	0x0037a080	1106	WorldGen::templePart2()
+templePather	0x00343db8	268	WorldGen::templePather(vmml::Vector2<int>&, int, int)
+templeRight	0x00620964	4	WorldGen::templeRight
+templeRooms	0x00620958	4	WorldGen::templeRooms
+templeTop	0x00620960	4	WorldGen::templeTop
+tileCounter	0x00353cd0	24	WorldGen::tileCounter(int, int)
+tileCounterKill	0x00353ce8	108	WorldGen::tileCounterKill()
+tileCounterMax	0x005653d8	4	WorldGen::tileCounterMax
+tileCounterNext	0x00353b4c	388	WorldGen::tileCounterNext(int, int)
+tileCounterNum	0x0061fd2c	4	WorldGen::tileCounterNum
+tileCounterX	0x0061fcdc	80	WorldGen::tileCounterX
+tileCounterY	0x0061fc8c	80	WorldGen::tileCounterY
+tileFrameRecursion	0x005653e4	1	WorldGen::tileFrameRecursion
+totalAltarsPlaced	0x0061ff8c	4	WorldGen::totalAltarsPlaced
+totalEvil	0x00623b80	4	WorldGen::totalEvil
+totalEvil2	0x00623b74	4	WorldGen::totalEvil2
+totalGood	0x00623b7c	4	WorldGen::totalGood
+totalGood2	0x00623b70	4	WorldGen::totalGood2
+totalSolid	0x00623b78	4	WorldGen::totalSolid
+totalSolid2	0x00623b6c	4	WorldGen::totalSolid2
+totalX	0x00623b62	2	WorldGen::totalX
+totalY	0x00623b60	2	WorldGen::totalY
+tree	0x00623940	10	WorldGen::tree
+treeBG	0x00665bfc	4	WorldGen::treeBG
+wallOut	0x00342454	176	WorldGen::wallOut(int, int, int)
+wallOut2	0x00342504	332	WorldGen::wallOut2(int, int, int)
+waterLine	0x00623920	4	WorldGen::waterLine
+wire	0x00643c48	131068	WorldGen::wire
+wireCheck	0x0039366c	544	WorldGen::wireCheck(int, int, int)
+woodSpawned	0x0062394c	4	WorldGen::woodSpawned
+worldGenCallBack	0x0038e35c	60	WorldGen::worldGenCallBack(void*)
+worldSavedToTempData	0x00665b88	1	WorldGen::worldSavedToTempData
+worldgenFlags	0x0061ff7c	4	WorldGen::worldgenFlags
+xferWater	0x00368750	464	WorldGen::xferWater()
