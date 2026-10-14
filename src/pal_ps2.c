@@ -111,8 +111,10 @@ int main(void){
     SifInitRpc(0); SifLoadModule("rom0:SIO2MAN",0,NULL); SifLoadModule("rom0:PADMAN",0,NULL);
     gs=gsKit_init_global(); gs->PSM=GS_PSM_CT16; gs->ZBuffering=0; /* 2D: sem Z-buffer */
     dmaKit_init(D_CTRL_RELE_OFF,D_CTRL_MFD_OFF,D_CTRL_STS_UNSPEC,D_CTRL_STD_OFF,D_CTRL_RCYC_8,1<<DMA_CHANNEL_GIF); dmaKit_chan_init(DMA_CHANNEL_GIF);
-    gsKit_init_screen(gs); tex_cache_init(); gsKit_mode_switch(gs,GS_ONESHOT);
-    gsKit_set_test(gs,GS_ATEST_ON); /* descarta pixels transparentes (alpha 0) -> sem fundo preto */
+    gsKit_init_screen(gs); tex_cache_init();     gsKit_mode_switch(gs,GS_ONESHOT);
+    /* Corrige alpha test para "alpha >= 128 e' visivel". PS2: ATST_GEQUAL com AREF=128 */
+    gs->Test->ATE = 1; gs->Test->ATST = 4; /* ATEST_GEQUAL */ gs->Test->AREF = 0x40; /* 128 */ gs->Test->AFAIL = 0;
+    gsKit_set_test(gs,0);
     gsKit_set_primalpha(gs,GS_SETREG_ALPHA(0,1,0,1,0),0);
     padInit(0); padPortOpen(0,0,padBuf); game_init();
     for(;;){
