@@ -21,6 +21,25 @@ static GSGLOBAL *gs; static char padBuf[256] __attribute__((aligned(64)));
 #define CH 256
 #define NSLOT 16
 static TexCache tcache; static TcSlot tcslots[NSLOT]; static GSTEXTURE slotg[NSLOT]; static int slot_frame[NSLOT]; static int cur_frame, next_tex_id=1;
+/* Descobre automaticamente onde estao os dados: mass:/data, mass:data, mass0:/data,
+   mc0:/data, host:data, usb:/data ... (variacom entre uLaunchELF/ps2link/ps2sdk). */
+static const char *g_root = DATA_ROOT; static int g_root_done=0;
+static const char *g_roots[] = {
+    DATA_ROOT,
+    "mass:/data","mass:data","mass0:/data","mass0:data",
+    "mc0:/data","mc1:/data","mc0:data","mc1:data",
+    "usb:/data","usb0:/data","ata:/data",
+    "host:data","host:/data",
+    0
+};
+static void resolve_root(void){
+    if(g_root_done) return; g_root_done=1;
+    for(const char **c=g_roots; *c; c++){ char p[300]; int n=snprintf(p,sizeof p,"%s/tileframe.bin",*c); if(n<=0||n>=(int)sizeof p) continue;
+        FILE *f=fopen(p,"rb"); if(f){ fclose(f); g_root=*c; printf("DATA_ROOT=%s\n",*c); return; } }
+    for(const char **c=g_roots; *c; c++){ char p[300]; int n=snprintf(p,sizeof p,"%s/tiles_0.tex",*c); if(n<=0||n>=(int)sizeof p) continue;
+        FILE *f=fopen(p,"rb"); if(f){ fclose(f); g_root=*c; printf("DATA_ROOT=%s (tiles)\n",*c); return; } }
+    printf("DATA_ROOT NAO ENCONTRADO (base=%s)\n",DATA_ROOT);
+}
 static uint8_t chunk_rgba[CH*CH*4] __attribute__((aligned(64)));
 static uint16_t chunk_ct16[CH*CH] __attribute__((aligned(64)));
 static void tex_cache_init(void){
@@ -29,7 +48,7 @@ static void tex_cache_init(void){
         g->Vram=gsKit_vram_alloc(gs,gsKit_texture_size(CH,CH,GS_PSM_CT16),GSKIT_ALLOC_USERBUFFER); }
 }
 Tex *pal_tex_load(const char *rel){
-    char p[256]; snprintf(p,sizeof p,"%s/%s",DATA_ROOT,rel); FILE *f=fopen(p,"rb"); if(!f) return NULL;
+    resolve_root(); char p[300]; snprintf(p,sizeof p,"%s/%s",g_root,rel); FILE *f=fopen(p,"rb"); if(!f) return NULL;
     uint8_t h[8]; if(fread(h,1,8,f)!=8||memcmp(h,"TEX0",4)){fclose(f);return NULL;} fclose(f);
     Tex *t=calloc(1,sizeof *t); t->w=h[4]|h[5]<<8; t->h=h[6]|h[7]<<8; t->id=next_tex_id++; t->path=strdup(p); return t;   /* so metadados */
 }
@@ -57,9 +76,9 @@ void pal_blit(Tex *t,int sx,int sy,int sw,int sh,int dx,int dy,int dw,int dh,uin
         gsKit_prim_sprite_texture(gs,&slotg[s],(dx+dw*fx0)*SX,(dy+dh*fy0)*SX,u0,y0-cy*CH,(dx+dw*fx1)*SX,(dy+dh*fy1)*SX,u1,y1-cy*CH,1,COL(tint));
     }
 }
-int pal_file_read(const char *rel,void **buf,long *len){ char p[256]; snprintf(p,sizeof p,"%s/%s",DATA_ROOT,rel); FILE *f=fopen(p,"rb"); if(!f) return 0;
+int pal_file_read(const char *rel,void **buf,long *len){ resolve_root(); char p[300]; snprintf(p,sizeof p,"%s/%s",g_root,rel); FILE *f=fopen(p,"rb"); if(!f) return 0;
     fseek(f,0,SEEK_END); *len=ftell(f); fseek(f,0,SEEK_SET); *buf=malloc(*len); fread(*buf,1,*len,f); fclose(f); return 1; }
-int pal_file_write(const char *rel,const void *buf,long len){ char p[256]; snprintf(p,sizeof p,"%s/%s",DATA_ROOT,rel); FILE *f=fopen(p,"wb"); if(!f) return 0; fwrite(buf,1,len,f); fclose(f); return 1; }
+int pal_file_write(const char *rel,const void *buf,long len){ resolve_root(); char p[300]; snprintf(p,sizeof p,"%s/%s",g_root,rel); FILE *f=fopen(p,"wb"); if(!f) return 0; fwrite(buf,1,len,f); fclose(f); return 1; }
 void pal_log(const char *s){ printf("%s\n",s); }
 int main(void){
     SifInitRpc(0); SifLoadModule("rom0:SIO2MAN",0,NULL); SifLoadModule("rom0:PADMAN",0,NULL);
