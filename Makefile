@@ -2,7 +2,7 @@
 # Ambiente pronto: export PS2DEV=/usr/local/ps2dev PS2SDK=$PS2DEV/ps2sdk ; make
 # O diretorio de dados vai como DATA_ROOT (padrao host:data = ps2link/pcsx2).
 EE_BIN = terraria.elf
-EE_OBJS = src/game.o src/worldgen.o src/light.o src/texcache.o src/pal_ps2.o
+EE_OBJS = src/game.o src/worldgen.o src/light.o src/texcache.o src/dotnet_rand.o src/pal_ps2.o
 EE_INCS += -I$(PS2DEV)/gsKit/include -Isrc
 EE_LDFLAGS += -L$(PS2DEV)/gsKit/lib
 EE_LIBS = -lgskit -ldmakit -lpad -lm -lc -lkernel
