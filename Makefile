@@ -9,7 +9,9 @@ EE_LIBS = -lgskit -ldmakit -lpad -lm -lc -lkernel
 # Otimizacoes para rodar liso no EE (R5900). Sem -ffast-math: preserva a
 # determinismo da geracao/fisica (mesma sequencia de floats do host).
 EE_CFLAGS += -O2 -funroll-loops
-EE_CFLAGS += -DDATA_ROOT='"host:data"'
+# Origem dos dados: host:data (ps2link/pcsx2) | mass:data (USB) | mc0:data (MC)
+DATA_ROOT ?= host:data
+EE_CFLAGS += -DDATA_ROOT='"$(DATA_ROOT)"'
 all: $(EE_BIN)
 clean:
 	rm -f $(EE_BIN) $(EE_OBJS)

@@ -1,7 +1,11 @@
 name: build-ps2
 
-# Compila o ELF do PS2 na nuvem usando a imagem oficial ps2dev/ps2dev
-# (ps2sdk + gsKit). O artefato sai na aba Actions deste repo.
+# Compila ELFs do PS2 na nuvem (imagem oficial ps2dev/ps2dev: ps2sdk + gsKit).
+# Gera:
+#   terraria-host.elf  -> dados em host:data   (ps2link / pcsx2)
+#   terraria-mass.elf  -> dados em mass:data   (pendrive USB)
+#   terraria-mc0.elf   -> dados em mc0:data    (memory card)
+# O artefato sai na aba Actions deste repo.
 on:
   push:
   workflow_dispatch:
@@ -15,14 +19,22 @@ jobs:
       - name: Build (ps2dev/ps2dev)
         run: |
           docker run --rm -v "$PWD":/src -w /src ps2dev/ps2dev:latest sh -c '
-            echo "PS2DEV=$PS2DEV PS2SDK=$PS2SDK GSKIT=$GSKIT" &&
+            set -e
+            echo "PS2DEV=$PS2DEV PS2SDK=$PS2SDK GSKIT=$GSKIT"
             make clean || true
-            make V=1
+            make DATA_ROOT=host:data EE_BIN=terraria-host.elf
+            make clean
+            make DATA_ROOT=mass:data EE_BIN=terraria-mass.elf
+            make clean
+            make DATA_ROOT=mc0:data  EE_BIN=terraria-mc0.elf
+            ls -l *.elf
           '
 
-      - name: Publicar terraria.elf
+      - name: Artefatos
         uses: actions/upload-artifact@v4
         with:
           name: terraria-elf
-          path: terraria.elf
-          if-no-files-found: error
+          path: |
+            terraria-host.elf
+            terraria-mass.elf
+            terraria-mc0.elf

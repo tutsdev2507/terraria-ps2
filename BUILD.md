@@ -27,15 +27,26 @@ nao existe pacote pronto; use uma das opcoes abaixo.
     make                          # -> terraria.elf
 
 ### Rodando no PS2
-O jogo carrega tudo por caminhos relativos a `DATA_ROOT` (padrao `host:data`).
+O jogo carrega tudo por `DATA_ROOT`. O workflow gera 3 variantes:
 
-- **ps2link / ps2client** (recomendado para testar): rode o ps2client a partir de
-  uma pasta que contenha `data/` (todos os `*.tex`, `tileframe.bin`,
-  `wallcell.bin` e, se quiser mundo/semente fixos, `tutorial.tw`/`seed.txt`).
-  Envie e execute `terraria.elf`; o `host:` mapeia para essa pasta.
-- **USB / HDD (uLaunchELF, OPL)**: coloque `data/` ao lado do ELF e recomende com
-  `-DDATA_ROOT='"mass:data"'` (USB) ou `'"pfs0:data"'` (HDD) no `Makefile`.
-- Ajuste a resolucao/regiao se necessario: o framebuffer e NTSC 640x448.
+| ELF                  | DATA_ROOT   | Quando usar                       |
+|----------------------|-------------|-----------------------------------|
+| `terraria-host.elf`  | `host:data` | ps2link/ps2client ou PCSX2        |
+| `terraria-mass.elf`  | `mass:data` | pendrive USB (uLaunchELF/FMCB)    |
+| `terraria-mc0.elf`   | `mc0:data`  | memory card                       |
+
+**Pendrive USB (mais simples, sem PC):**
+1. Copie `terraria-mass.elf` para a raiz do pendrive.
+2. Copie a pasta `data/` (todos os `*.tex`, `tileframe.bin`, `wallcell.bin`)
+   para `mass:/data/`.
+3. No PS2 com FMCB, abra o **uLaunchELF**, selecione o `terraria-mass.elf` e
+   execute. (O uLaunchELF monta o USB; se o jogo nao achar os arquivos, carregue
+   `USBHDFSD`/`USBD` por um launch com IRX.)
+
+**ps2link:** rode o `ps2client` numa pasta que contenha `data/` e envie
+`terraria-host.elf`.
+
+Ajuste a resolucao/regiao se necessario: o framebuffer e NTSC 640x448.
 
 Observacoes de VRAM: framebuffer CT16 640x448 duplo (~1.1MB) + 16 chunks
 256x256 CT16 (~2MB). O Z-buffer foi **desligado** (`gs->ZBuffering=0`) para
