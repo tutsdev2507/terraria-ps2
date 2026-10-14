@@ -39,7 +39,7 @@ static void resolve_root(void){
 
 /* ---- Pacote de texturas ja em CT16 e fatiado em chunks: 1 fread contiguo por chunk ---- */
 #define CH 128
-#define NSLOT 56
+#define NSLOT 80
 #pragma pack(push,1)
 typedef struct { char name[64]; uint16_t w,h,cw,ch,ncx,ncy; uint32_t dataoff,chunksize; } PakEnt;
 #pragma pack(pop)
