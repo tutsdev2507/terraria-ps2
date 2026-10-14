@@ -16,3 +16,6 @@ wgdump
 backup_*/
 *.zip
 *.tar.gz
+
+# pacote de texturas gerado localmente (nao versionar)
+data/ps2tex.pak

@@ -1,5 +1,3 @@
-/* Backend PS2 (gsKit). ESCRITO, NAO COMPILADO/TESTADO (sem PS2SDK no ambiente de desenvolvimento).
- * VRAM: framebuffer CT16 640x448 x2 (~1.1MB) + 16 chunks 256x256 CT16 (2MB) com LRU (texcache.c, testado no host). */
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -14,15 +12,13 @@
 #ifndef DATA_ROOT
 #define DATA_ROOT "host:data"
 #endif
-static GSGLOBAL *gs; static char padBuf[256] __attribute__((aligned(64)));
+
+static GSGLOBAL *gs;
+static uint8_t padBuf[256] __attribute__((aligned(64)));
 #define SX 2
 #define COL(c) GS_SETREG_RGBAQ((c)>>24,((c)>>16)&255,((c)>>8)&255,(((c)&255)>>1),0)
-/* ---- Texturas: chunks 256x256 CT16, cache LRU na VRAM, dados lidos do arquivo sob demanda (nada residente na RAM) ---- */
-#define CH 256
-#define NSLOT 16
-static TexCache tcache; static TcSlot tcslots[NSLOT]; static GSTEXTURE slotg[NSLOT]; static int slot_frame[NSLOT]; static int cur_frame, next_tex_id=1;
-/* Descobre automaticamente onde estao os dados: mass:/data, mass:data, mass0:/data,
-   mc0:/data, host:data, usb:/data ... (variacom entre uLaunchELF/ps2link/ps2sdk). */
+
+/* ---- Descobre o DATA_ROOT: mass:/data, mass:data, mass0:/data, mc0:/data, host:data ... ---- */
 static const char *g_root = DATA_ROOT; static int g_root_done=0;
 static const char *g_roots[] = {
     DATA_ROOT,
@@ -40,27 +36,58 @@ static void resolve_root(void){
         FILE *f=fopen(p,"rb"); if(f){ fclose(f); g_root=*c; printf("DATA_ROOT=%s (tiles)\n",*c); return; } }
     printf("DATA_ROOT NAO ENCONTRADO (base=%s)\n",DATA_ROOT);
 }
-static uint8_t chunk_rgba[CH*CH*4] __attribute__((aligned(64)));
-static uint16_t chunk_ct16[CH*CH] __attribute__((aligned(64)));
+
+/* ---- Pacote de texturas ja em CT16 e fatiado em chunks: 1 fread contiguo por chunk ---- */
+#define CH 128
+#define NSLOT 56
+#pragma pack(push,1)
+typedef struct { char name[64]; uint16_t w,h,cw,ch,ncx,ncy; uint32_t dataoff,chunksize; } PakEnt;
+#pragma pack(pop)
+static PakEnt *pak=NULL; static int pak_n=0; static FILE *pakf=NULL; static int pak_tried=0;
+static void pak_open(void){
+    if(pak_tried) return; pak_tried=1;
+    resolve_root(); char p[300]; snprintf(p,sizeof p,"%s/ps2tex.pak",g_root); pakf=fopen(p,"rb"); if(!pakf) return;
+    char hdr[12]; if(fread(hdr,1,12,pakf)!=12||memcmp(hdr,"P2TEX1",6)){ fclose(pakf); pakf=NULL; return; }
+    uint32_t n; memcpy(&n,hdr+8,4); if(n==0||n>8192){ fclose(pakf); pakf=NULL; return; }
+    pak=malloc((size_t)n*sizeof(PakEnt));
+    if(!pak||fread(pak,sizeof(PakEnt),n,pakf)!=(size_t)n){ free(pak); pak=NULL; fclose(pakf); pakf=NULL; return; }
+    pak_n=(int)n; printf("pak: %d texturas\n",pak_n);
+}
+static PakEnt *pak_find(const char *name){ if(!pak) return NULL; for(int i=0;i<pak_n;i++) if(!strcmp(pak[i].name,name)) return &pak[i]; return NULL; }
+
+/* ---- Cache LRU na VRAM ---- */
+typedef struct { Tex t; uint32_t dataoff,chunksize; uint16_t ncx; } Ps2Tex; /* .t primeiro: cast seguro */
+static TexCache tcache; static TcSlot tcslots[NSLOT]; static GSTEXTURE slotg[NSLOT]; static int slot_frame[NSLOT]; static int cur_frame, next_tex_id=1;
+static uint8_t  chunk_rgba[CH*CH*4] __attribute__((aligned(64)));
+static uint16_t chunk_ct16[CH*CH]   __attribute__((aligned(64)));
 static void tex_cache_init(void){
     tc_init(&tcache,tcslots,NSLOT);
     for(int i=0;i<NSLOT;i++){ GSTEXTURE *g=&slotg[i]; g->Width=CH; g->Height=CH; g->PSM=GS_PSM_CT16; g->Filter=GS_FILTER_NEAREST; g->Mem=(void*)chunk_ct16;
         g->Vram=gsKit_vram_alloc(gs,gsKit_texture_size(CH,CH,GS_PSM_CT16),GSKIT_ALLOC_USERBUFFER); }
 }
 Tex *pal_tex_load(const char *rel){
-    resolve_root(); char p[300]; snprintf(p,sizeof p,"%s/%s",g_root,rel); FILE *f=fopen(p,"rb"); if(!f) return NULL;
-    uint8_t h[8]; if(fread(h,1,8,f)!=8||memcmp(h,"TEX0",4)){fclose(f);return NULL;} fclose(f);
-    Tex *t=calloc(1,sizeof *t); t->w=h[4]|h[5]<<8; t->h=h[6]|h[7]<<8; t->id=next_tex_id++; t->path=strdup(p); return t;   /* so metadados */
+    pak_open(); PakEnt *e=pak_find(rel);
+    if(e){ Ps2Tex *pt=calloc(1,sizeof *pt); pt->t.w=e->w; pt->t.h=e->h; pt->t.id=next_tex_id++; pt->t.path=NULL;
+        pt->dataoff=e->dataoff; pt->chunksize=e->chunksize; pt->ncx=e->ncx; return &pt->t; }
+    /* fallback: .tex (metadados apenas; leitura fatiada do arquivo) */
+    char p[300]; snprintf(p,sizeof p,"%s/%s",g_root,rel); FILE *f=fopen(p,"rb"); if(!f) return NULL;
+    uint8_t h[8]; if(fread(h,1,8,f)!=8||memcmp(h,"TEX0",4)){ fclose(f); return NULL; } fclose(f);
+    Tex *t=calloc(1,sizeof *t); t->w=h[4]|h[5]<<8; t->h=h[6]|h[7]<<8; t->id=next_tex_id++; t->path=strdup(p); return t;
 }
 static int chunk_slot(Tex *t,int cx,int cy){
-    int miss; int s=tc_acquire(&tcache,t->id*256+cy*16+cx,&miss);
+    int miss; int s=tc_acquire(&tcache,t->id*1048576+cy*1024+cx,&miss);
     if(miss){
-        if(slot_frame[s]==cur_frame){ gsKit_queue_exec(gs); gsKit_queue_reset(gs->Os_Queue); }  /* slot ainda referenciado por prims pendentes deste quadro */
-        int x0=cx*CH,y0=cy*CH,cw=t->w-x0<CH?t->w-x0:CH,chh=t->h-y0<CH?t->h-y0:CH;
-        memset(chunk_rgba,0,sizeof chunk_rgba); FILE *f=fopen(t->path,"rb");
-        if(f){ for(int r=0;r<chh;r++){ fseek(f,8+((long)(y0+r)*t->w+x0)*4,SEEK_SET); if(fread(chunk_rgba+r*CH*4,1,cw*4,f)!=(size_t)cw*4) break; } fclose(f); }
-        tc_rgba_to_ct16(chunk_rgba,chunk_ct16,CH*CH); FlushCache(0);
-        gsKit_texture_upload(gs,&slotg[s]);
+        if(slot_frame[s]==cur_frame){ gsKit_queue_exec(gs); gsKit_queue_reset(gs->Os_Queue); } /* slot ainda referenciado por prims pendentes */
+        if(t->path){ /* fallback .tex: le linha a linha e converte */
+            int x0=cx*CH,y0=cy*CH,cw=t->w-x0<CH?t->w-x0:CH,chh=t->h-y0<CH?t->h-y0:CH; if(cw<0)cw=0; if(chh<0)chh=0;
+            memset(chunk_rgba,0,sizeof chunk_rgba); FILE *f=fopen(t->path,"rb");
+            if(f){ for(int r=0;r<chh;r++){ fseek(f,8+((long)(y0+r)*t->w+x0)*4,SEEK_SET); if(fread(chunk_rgba+r*CH*4,1,cw*4,f)!=(size_t)cw*4) break; } fclose(f); }
+            tc_rgba_to_ct16(chunk_rgba,chunk_ct16,CH*CH);
+        } else { /* pacote: 1 leitura contigua por chunk (ja em CT16) */
+            Ps2Tex *pt=(Ps2Tex*)t; memset(chunk_ct16,0,sizeof chunk_ct16);
+            if(pakf){ fseek(pakf,(long)pt->dataoff+(long)(cy*pt->ncx+cx)*pt->chunksize,SEEK_SET); fread(chunk_ct16,1,pt->chunksize,pakf); }
+        }
+        FlushCache(0); gsKit_texture_upload(gs,&slotg[s]);
     }
     slot_frame[s]=cur_frame; return s;
 }
@@ -82,9 +109,11 @@ int pal_file_write(const char *rel,const void *buf,long len){ resolve_root(); ch
 void pal_log(const char *s){ printf("%s\n",s); }
 int main(void){
     SifInitRpc(0); SifLoadModule("rom0:SIO2MAN",0,NULL); SifLoadModule("rom0:PADMAN",0,NULL);
-    gs=gsKit_init_global(); gs->PSM=GS_PSM_CT16; gs->ZBuffering=0; /* 2D: desliga Z para economizar ~0.6MB VRAM */
+    gs=gsKit_init_global(); gs->PSM=GS_PSM_CT16; gs->ZBuffering=0; /* 2D: sem Z-buffer */
     dmaKit_init(D_CTRL_RELE_OFF,D_CTRL_MFD_OFF,D_CTRL_STS_UNSPEC,D_CTRL_STD_OFF,D_CTRL_RCYC_8,1<<DMA_CHANNEL_GIF); dmaKit_chan_init(DMA_CHANNEL_GIF);
-    gsKit_init_screen(gs); tex_cache_init(); gsKit_mode_switch(gs,GS_ONESHOT); gsKit_set_test(gs,GS_ATEST_OFF);
+    gsKit_init_screen(gs); tex_cache_init(); gsKit_mode_switch(gs,GS_ONESHOT);
+    gsKit_set_test(gs,GS_ATEST_ON); /* descarta pixels transparentes (alpha 0) -> sem fundo preto */
+    gsKit_set_primalpha(gs,GS_SETREG_ALPHA(0,1,0,1,0),0);
     padInit(0); padPortOpen(0,0,padBuf); game_init();
     for(;;){
         Input in; memset(&in,0,sizeof in); struct padButtonStatus b;
