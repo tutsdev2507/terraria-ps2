@@ -21,6 +21,8 @@ jobs:
           docker run --rm -v "$PWD":/src -w /src ps2dev/ps2dev:latest sh -c '
             set -e
             echo "PS2DEV=$PS2DEV PS2SDK=$PS2SDK GSKIT=$GSKIT"
+            command -v make >/dev/null 2>&1 || apk add --no-cache make
+            make --version | head -1
             make clean || true
             make DATA_ROOT=host:data EE_BIN=terraria-host.elf
             make clean
