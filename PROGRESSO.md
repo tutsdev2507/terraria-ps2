@@ -10,11 +10,13 @@
 - Fisica/render corrigidos: quebrar bau (tipo 21) limpa o 2x2 inteiro e dropa o bau uma vez; quebrar arvore (tipo 5) remove o tronco inteiro e dropa madeira; a mira NAO volta mais para a frente do jogador ao soltar o toque (mantem a ultima posicao, como no original).
 - NPC slime: sprite real (`data/npc_slime_real.tex`) extraido do APK (44x68 = 2 quadros). IA simples, colisao, knockback, dano, drop de gel (id 23); render correto por frame; corrigido bug: `mobtex`/`mobtex_tried` eram declarados localmente em `game_init` (sombreamento do global) causando o uso do fallback verde.
 
+## Concluido (build PS2)
+- ELF do PS2 COMPILA e LINK (imagem oficial `ps2dev/ps2dev`, snow via GitHub Actions). Correcoes: instalar `make` (`apk add`) na imagem e incluir `src/dotnet_rand.o` no link. Gera 3 variantes: `terraria-host.elf` (host:data), `terraria-mass.elf` (mass:data/USB) e `terraria-mc0.elf` (mc0:data). Repo: github.com/tutsdev2507/terraria-ps2.
+- Otimizacao PS2: Z-buffer desligado (`gs->ZBuffering=0`, jogo 2D) liberando ~0.6MB de VRAM; `-O2 -funroll-loops` (sem -ffast-math, p/ preservar determinismo).
+
 ## NAO verificado
-- pal_ps2.c NAO foi compilado (sem PS2SDK/toolchain nesta maquina). A API foi conferida contra o gsKit atual (gsKit_queue_reset(Os_Queue), GSTEXTURE, gsKit_texture_upload etc.) e o build agora esta pronto para GitHub Actions/Docker (`ps2dev/ps2dev`). Riscos restantes: alfa de CT16 (1 bit) com blending do GS; performance de fseek por linha em chunks largos.
-- Nada medido em hardware/emulador. Sem benchmarks.
-- Build PS2 preparado: `Makefile` (flags -O2 -funroll-loops, DATA_ROOT configuravel), `.github/workflows/ps2.yml` (compila na nuvem) e `tools/build_ps2.sh` (Docker). Ver BUILD.md.
-- Otimizacao PS2: Z-buffer desligado (`gs->ZBuffering=0`, jogo 2D) liberando ~0.6MB de VRAM.
+- pal_ps2.c ainda NAO foi executado em hardware/PCSX2 (so compilado). Riscos em runtime: alfa de CT16 (1 bit) com blending do GS; performance de fseek por linha em chunks largos; disponibilidade do `mass:`/USBHDFSD no uLaunchELF.
+- Sem benchmarks de FPS.
 ## Problemas conhecidos / falta
 Secoes pos-tile do .world (baus/placas/NPCs, offset >197946), ciclo dia/noite, iluminacao por tochas (futuro), liquidos dinamicos, IA/combate, UI/fonte/menus, audio (wav->VAG), saves, cabelo, merges de tiles. Geracao:**primeira versao pronta** (ver docs/uncertainties.md para o que falta: corrupcao/crimson, dungeon, templo, gelo/neve, arvores vivas, piramide, colmeia, casas, potes, liquidos dinamicos).
 ## Proximo passo
