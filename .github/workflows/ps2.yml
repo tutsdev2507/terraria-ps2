@@ -1,7 +1,7 @@
 name: build-ps2
 
-# Compila o ELF do PS2 na nuvem (imagem oficial ps2dev/ps2dev, que ja traz
-# ps2sdk + gsKit). Depois baixe o artefato "terraria.elf" na aba Actions.
+# Compila o ELF do PS2 na nuvem usando a imagem oficial ps2dev/ps2dev
+# (ps2sdk + gsKit). O artefato sai na aba Actions deste repo.
 on:
   push:
   workflow_dispatch:
@@ -9,16 +9,20 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: ps2dev/ps2dev:latest
     steps:
       - uses: actions/checkout@v4
-      - name: Build
+
+      - name: Build (ps2dev/ps2dev)
         run: |
-          echo "PS2DEV=$PS2DEV  PS2SDK=$PS2SDK  GSKIT=$GSKIT"
-          make clean || true
-          make
-      - name: Artefato
+          docker run --rm -v "$PWD":/src -w /src ps2dev/ps2dev:latest sh -c '
+            echo "PS2DEV=$PS2DEV PS2SDK=$PS2SDK GSKIT=$GSKIT" &&
+            make clean || true
+            make V=1
+          '
+
+      - name: Publicar terraria.elf
         uses: actions/upload-artifact@v4
         with:
           name: terraria-elf
           path: terraria.elf
+          if-no-files-found: error
